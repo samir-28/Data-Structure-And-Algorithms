@@ -8,7 +8,9 @@ int facto(int n)
     {
         return 1;
     }
+    
     return facto(n - 1) * n;
+    
 }
 
 int main()
