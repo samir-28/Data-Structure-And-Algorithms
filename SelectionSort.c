@@ -1,31 +1,48 @@
 #include <stdio.h>
 #include <conio.h>
 
-void InsertionSort(int arr[], int size) 
+void selection(int[], int);
+void main()
 {
-    int i, j;
-    for (i = 1; i < size; i++)
-    {
-        int current = arr[i];
-        int j = i - 1;
-
-        while(current < arr[j] && j >= 0)
-        {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-        arr[j + 1] = current;
-    }
+    int n, i;
+    int a[100];
+    printf("Enter the number of the data items:");
+    scanf("%d", &n);
+    printf("Enter %d data items:\n", n);
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+    printf("The data items before sorting:\n");
+    for (i = 0; i < n; i++)
+        printf("%d\t", a[i]);
+    selection(a, n);
+    printf("\nThe data items after sorting:\n");
+    for (i = 0; i < n; i++)
+        printf("%d\t", a[i]);
+    getch();
 }
 
-int main()
+void selection(int a[], int n)
 {
-    int size = 6;
-    int arr[] = {3, 7, 9, 6, 1, 0};
-    InsertionSort(arr, size);
-    printf("Array after Sorting:\n");
-    for (int i = 0; i < size; i++)
+    int i, j, temp, index, least;
+
+    for (i = 0; i < n; i++)
     {
-        printf("%d \t", arr[i]);
+        least = a[i];
+        index = i;
+
+        for (j = i + 1; j < n; j++)
+        {
+            if (a[j] < least)
+            {
+                least = a[j];
+                index = j;
+            }
+        }
+        if (i != index)
+        {
+            temp = a[i];
+            a[i] = a[index];
+            a[index] = temp;
+        }
     }
 }
